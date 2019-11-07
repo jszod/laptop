@@ -157,32 +157,37 @@ brew_install_or_upgrade 'openssl'
 brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
 
-ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
 
-eval "$(rbenv init - zsh)"
+## ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
 
-if ! rbenv versions | grep -Fq "$ruby_version"; then
-  rbenv install -s "$ruby_version"
-fi
+## eval "$(rbenv init - zsh)"
 
-rbenv global "$ruby_version"
-rbenv shell "$ruby_version"
+## if ! rbenv versions | grep -Fq "$ruby_version"; then
+##  rbenv install -s "$ruby_version"
+## fi
 
-gem update --system
+## rbenv global "$ruby_version"
+## rbenv shell "$ruby_version"
 
-gem_install_or_update 'bundler'
+## gem update --system
 
-fancy_echo "Configuring Bundler ..."
-  number_of_cores=$(sysctl -n hw.ncpu)
-  bundle config --global jobs $((number_of_cores - 1))
+## gem_install_or_update 'bundler'
 
-brew_install_or_upgrade 'heroku-toolbelt'
+## fancy_echo "Configuring Bundler ..."
+##   number_of_cores=$(sysctl -n hw.ncpu)
+##   bundle config --global jobs $((number_of_cores - 1))
 
-if ! command -v rcup >/dev/null; then
-  brew_tap 'thoughtbot/formulae'
-  brew_install_or_upgrade 'rcm'
-fi
+## brew_install_or_upgrade 'heroku-toolbelt'
 
-if [ -f "$HOME/.laptop.local" ]; then
-  . "$HOME/.laptop.local"
+
+## if ! command -v rcup >/dev/null; then
+##   brew_tap 'thoughtbot/formulae'
+##   brew_install_or_upgrade 'rcm'
+## fi
+
+##if [ -f "$HOME/.laptop.local" ]; then
+##  . "$HOME/.laptop.local"
+
+if [ -f "$HOME/laptop-local/laptop.local" ]; then  
+  . "$HOME/laptop-local/laptop.local"
 fi
